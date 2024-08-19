@@ -1,6 +1,6 @@
 # Diagrama Relacional
 
-    O diagrama relacional é uma representação gráfica que mostra as tabelas de um banco de dados e os relacionamentos entre elas. O diagrama relacional é uma ferramenta importante para o desenvolvimento de sistemas de banco de dados, pois ajuda a visualizar a estrutura do banco de dados e os relacionamentos entre as tabelas.
+O diagrama relacional é uma representação gráfica que mostra as tabelas de um banco de dados e os relacionamentos entre elas. O diagrama relacional é uma ferramenta importante para o desenvolvimento de sistemas de banco de dados, pois ajuda a visualizar a estrutura do banco de dados e os relacionamentos entre as tabelas.
 
 ![Diagrama Relacional Mortal Kombat](../img/DR_MK.png)
 
