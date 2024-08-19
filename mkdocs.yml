@@ -1,0 +1,27 @@
+site_name: Mortal Kombat - SBD1 (Mauricio)
+
+theme:
+    name: material
+    palette:
+        # Palette toggle for light mode
+        - scheme: slate
+          primary: red
+          toggle:
+              icon: material/weather-sunny
+              name: Switch to light mode
+
+        # Palette toggle for dark mode
+        - scheme: default
+          primary: red
+          toggle:
+              icon: material/weather-night
+              name: Switch to dark mode
+
+markdown_extensions:
+    - pymdownx.tasklist
+    - pymdownx.emoji
+    - pymdownx.superfences
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.highlight
+    - pymdownx.superfences
