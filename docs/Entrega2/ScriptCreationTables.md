@@ -217,3 +217,9 @@ CREATE TABLE InventarioItem (
     FOREIGN KEY (idInstanciaItem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
 );
 ```
+
+### Histórico de Versão
+
+| Data       | Versão | Descrição     | Autor(es)                      |
+| ---------- | ------ | ------------- | ------------------------------ |
+| 29/08/2021 | 1.0    | Criação do DR | Lude Ribeiro, Guilherme Vilela |
