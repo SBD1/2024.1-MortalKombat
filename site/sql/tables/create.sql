@@ -42,9 +42,11 @@ CREATE TABLE LutadorChefe (
     CHECK (MelhoriaAtaque >= 0 AND MelhoriaDefesa >= 0)
 );
 
--- Criação das tabelas de especialização de Item sem a tabela genérica
+-- Criação das tabelas de especialização de Item com Nome e Descrição
 CREATE TABLE Arma (
     idArma INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     AtkFisico INT NOT NULL,
     AtkEspecial INT NOT NULL,
     Nivel INT NOT NULL,
@@ -54,6 +56,8 @@ CREATE TABLE Arma (
 
 CREATE TABLE Armadura (
     idArmadura INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     DefesaFisica INT NOT NULL,
     DefesaEspecial INT NOT NULL,
     Vida INT NOT NULL,
@@ -63,16 +67,20 @@ CREATE TABLE Armadura (
 
 CREATE TABLE Amuleto (
     idAmuleto INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     Defesa INT NOT NULL,
     AtaqueFisico INT NOT NULL,
     AtaqueEspecial INT NOT NULL,
     Vida INT NOT NULL,
     Nivel INT NOT NULL,
-    CHECK (Defesa >= 0 AND AtaqueFisico >= 0 AND AtaqueEspecial >= 0 AND Vida >= 0 AND Nivel >= 1)
+    CHECK (Defesa >= 0 AND AtaqueFisico >= 0 AND AtaqueEspecial >= 0 E Vida >= 0 E Nivel >= 1)
 );
 
 CREATE TABLE Consumivel (
     idConsumivel INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     Efeito VARCHAR(100) NOT NULL,
     Nivel INT NOT NULL,
     CHECK (Nivel >= 1)
@@ -110,8 +118,3 @@ CREATE TABLE InventarioItem (
     FOREIGN KEY (idInventario) REFERENCES Inventario(idInventario) ON DELETE RESTRICT,
     FOREIGN KEY (idInstanciaItem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
 );
-
--- Índices para otimizar consultas
-CREATE INDEX idx_lutador_nome ON Lutador (Nome);
-CREATE INDEX idx_sala_combate_nome ON SalaCombate (Nome);
-CREATE INDEX idx_sala_evento_nome ON SalaEvento (Nome);

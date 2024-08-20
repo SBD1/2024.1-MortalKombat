@@ -100,6 +100,8 @@ São armazenados o `idArma`, `AtkFisico`, `AtkEspecial`, `Nivel` e `Habilidade` 
 ```sql
 CREATE TABLE Arma (
     idArma INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     AtkFisico INT NOT NULL,
     AtkEspecial INT NOT NULL,
     Nivel INT NOT NULL,
@@ -118,6 +120,8 @@ São armazenados o `idArmadura`, `DefesaFisica`, `DefesaEspecial`, `Vida` e `Niv
 ```sql
 CREATE TABLE Armadura (
     idArmadura INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     DefesaFisica INT NOT NULL,
     DefesaEspecial INT NOT NULL,
     Vida INT NOT NULL,
@@ -136,12 +140,14 @@ São armazenados o `idAmuleto`, `Defesa`, `AtaqueFisico`, `AtaqueEspecial`, `Vid
 ```sql
 CREATE TABLE Amuleto (
     idAmuleto INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     Defesa INT NOT NULL,
     AtaqueFisico INT NOT NULL,
     AtaqueEspecial INT NOT NULL,
     Vida INT NOT NULL,
     Nivel INT NOT NULL,
-    CHECK (Defesa >= 0 AND AtaqueFisico >= 0 AND AtaqueEspecial >= 0 AND Vida >= 0 AND Nivel >= 1)
+    CHECK (Defesa >= 0 AND AtaqueFisico >= 0 AND AtaqueEspecial >= 0 E Vida >= 0 E Nivel >= 1)
 );
 ```
 
@@ -155,6 +161,8 @@ São armazenados o `idConsumivel`, `Efeito` e `Nivel` do consumível.
 ```sql
 CREATE TABLE Consumivel (
     idConsumivel INT PRIMARY KEY,
+    Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL,
     Efeito VARCHAR(100) NOT NULL,
     Nivel INT NOT NULL,
     CHECK (Nivel >= 1)
