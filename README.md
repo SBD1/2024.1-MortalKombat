@@ -16,7 +16,7 @@ O projeto consiste em um jogo de luta com mecânicas de torre e salas de batalha
 
 ## Entrega 1
 
--   MER: [Modelo Entidade Relacionamento](docs/Entrega1/-MER_MortalKombat_v1.md)
+-   MER: [Modelo Entidade Relacionamento](docs/Entrega1/MER_MortalKombat_v1.md)
 -   DD: [Dicionário de Dados](docs/Entrega1/DD_MortalKombat_v1.md)
 -   DR: [Diagrama Relacional](docs/Entrega1/DR_MortalKombat_v1.md)
 
