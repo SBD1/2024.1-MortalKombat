@@ -6,9 +6,9 @@ Repositório para a disciplina de Banco de Dados 2024.1 Grupo Mortal Kombat
 
 | Matrícula      | Nome               | GitHub                                                 |
 | -------------- | ------------------ | ------------------------------------------------------ |
-| 15/0137770     | Lude Ribeiro       | [@LudeRibeiros](www.github.com/luderibeiro)            |
+| 15/0137770     | Lude Ribeiro       | [@luderibeiro](www.github.com/luderibeiro)             |
 | 19/0088168     | Guilerme Vilela    | [@guivilela7](https://github.com/guivilela7)           |
-| 21/1006957     | Sebastián Zuzunaga   | [@sebazac332](https://github.com/sebazac332)           |
+| 21/1006957     | Sebastián Zuzunaga | [@sebazac332](https://github.com/sebazac332)           |
 | ~~00/0000000~~ | ~~Vinicius Alves~~ | ~~[@viniAlves2020](https://github.com/vinialves2020)~~ |
 
 ## Descrição do Projeto
