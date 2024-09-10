@@ -103,18 +103,18 @@ CREATE TABLE Jogador_equipa (
 CREATE TABLE Item (
     idItem SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
+    tipo CHAR(1) NOT NULL,
     nivel INT NOT NULL,
     habilidade VARCHAR(100),
-    CONSTRAINT item_val_chk CHECK (Nivel >= 1)
+    CONSTRAINT item_val_chk CHECK (Nivel >= 1),
+    CONSTRAINT item_tipo_chk CHECK (tipo = 'A' OR tipo = 'B' OR tipo = 'C' OR tipo = 'D')
 );
 
 -- Criação das tabelas de especialização de Item com Nome e Descrição
 CREATE TABLE Arma (
     idItem INT NOT NULL,
-    nome VARCHAR(100) NOT NULL,
     atkFisico INT NOT NULL,
     atkEspecial INT NOT NULL,
-    habilidade VARCHAR(100),
 	CONSTRAINT arma_id FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE RESTRICT,
     CONSTRAINT arma_val_chk CHECK (AtkFisico >= 0 AND AtkEspecial >= 0)
 );

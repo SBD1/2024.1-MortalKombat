@@ -35,55 +35,105 @@ VALUES (1, 55, 500, 'Jax Briggs', 0.22, 140, 130);
 INSERT INTO Lutador (Nivel, Defesa, Vida, Nome, Chance_critica, Ataque_especial, Ataque_fisico) 
 VALUES (1, 60, 540, 'Kano', 0.18, 125, 140);
 
--- Inserir Itens de cada Lutador
+-- Inserir Items Armas de cada Lutador
 
 -- Scorpion (Espada Flamejante)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Espada Flamejante', 1, 'Aumenta o ataque com fogo');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Espada Flamejante', 1, 'A', 'Aumenta o ataque com fogo');
 
 -- Sub-Zero (Lâmina de Gelo)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Lâmina de Gelo', 1, 'Congela inimigos ao atacar');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Lâmina de Gelo', 1, 'A', 'Congela inimigos ao atacar');
 
 -- Raiden (Bastão de Trovão)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Bastão de Trovão', 1, 'Aumenta o poder de ataque elétrico');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Bastão de Trovão', 1, 'A', 'Aumenta o poder de ataque elétrico');
 
 -- Liu Kang (Faixa de Dragão)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Faixa de Dragão', 1, 'Aumenta o dano de fogo e artes marciais');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Faixa de Dragão', 1, 'A', 'Aumenta o dano de fogo e artes marciais');
 
 -- Kitana (Leques Afiados)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Leques Afiados', 1, 'Causa dano crítico e corta inimigos');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Leques Afiados', 1, 'A', 'Causa dano crítico e corta inimigos');
 
 -- Mileena (Sais de Aço)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Sais de Aço', 1, 'Aumenta a velocidade de ataque e dano crítico');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Sais de Aço', 1, 'A', 'Aumenta a velocidade de ataque e dano crítico');
 
 -- Kung Lao (Chapéu Cortante)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Chapéu Cortante', 1, 'Dá golpes giratórios e aumenta o ataque');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Chapéu Cortante', 1, 'A', 'Dá golpes giratórios e aumenta o ataque');
 
 -- Shao Kahn (Martelo da Destruição)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Martelo da Destruição', 1, 'Aumenta dano pesado e resistência');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Martelo da Destruição', 1, 'A', 'Aumenta dano pesado e resistência');
 
 -- Johnny Cage (Óculos de Estrela)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Óculos de Estrela', 1, 'Aumenta a chance de crítico e estilo de luta');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Óculos de Estrela', 1, 'A', 'Aumenta a chance de crítico e estilo de luta');
 
 -- Sonya Blade (Faca de Operações)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Faca de Operações', 1, 'Aumenta precisão e dano em ataques furtivos');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Faca de Operações', 1, 'A', 'Aumenta precisão e dano em ataques furtivos');
 
 -- Jax Briggs (Braços Biônicos)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Braços Biônicos', 1, 'Aumenta força e resistência física');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Braços Biônicos', 1, 'A', 'Aumenta força e resistência física');
 
 -- Kano (Lâmina Laser)
-INSERT INTO Item (nome, nivel, habilidade) 
-VALUES ('Lâmina Laser', 1, 'Aumenta dano e permite ataques a longa distância');
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Lâmina Laser', 1, 'A', 'Aumenta dano e permite ataques a longa distância');
+
+-- Inserir en Armas
+
+-- Scorpion (Espada Flamejante)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (1, 50, 100);
+
+-- Sub-Zero (Lâmina de Gelo)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (2, 50, 100);
+
+-- Raiden (Bastão de Trovão)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (3, 60, 80);
+
+-- Liu Kang (Faixa de Dragão)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (4, 30, 150);
+
+-- Kitana (Leques Afiados)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (5, 20, 200);
+
+-- Mileena (Sais de Aço)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (6, 70, 90);
+
+-- Kung Lao (Chapéu Cortante)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (7, 50, 100);
+
+-- Shao Kahn (Martelo da Destruição)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (8, 100, 80);
+
+-- Johnny Cage (Óculos de Estrela)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (9, 15, 200);
+
+-- Sonya Blade (Faca de Operações)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (10, 30, 160);
+
+-- Jax Briggs (Braços Biônicos)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (11, 80, 100);
+
+-- Kano (Lâmina Laser)
+INSERT INTO Arma (idItem, atkFisico, atkEspecial) 
+VALUES (12, 90, 120);
 
 -- Criar instâncias dos itens
 INSERT INTO InstanciaItem (idItem) VALUES (1); -- Espada Flamejante (Scorpion)
@@ -99,55 +149,105 @@ INSERT INTO InstanciaItem (idItem) VALUES (10); -- Faca de Operações (Sonya Bl
 INSERT INTO InstanciaItem (idItem) VALUES (11); -- Braços Biônicos (Jax Briggs)
 INSERT INTO InstanciaItem (idItem) VALUES (12); -- Lâmina Laser (Kano)
 
+-- Inserir Item armaduras
+
+-- Scorpion (Armadura Infernal)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Armadura Infernal', 1, 'B', 'Diminui o dano recebido com ataques de gelo');
+
+-- Sub-Zero (Armadura de Gelo)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Lâmina de Gelo', 1, 'B', 'Diminui o dano recebido com ataques de fogo');
+
+-- Raiden (Armadura do Trovão)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Bastão de Trovão', 1, 'B', 'Aumenta a velocidade do usuário');
+
+-- Liu Kang (Armadura de Dragão)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Faixa de Dragão', 1, 'B', 'Aumenta o dano de ataques especiais');
+
+-- Kitana (Armadura Real)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Leques Afiados', 1, 'B', 'Aumenta a probabilidade crítica');
+
+-- Mileena (Armadura de Lâminas)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Sais de Aço', 1, 'B', 'Atacar o inimigo regenera saúde');
+
+-- Kung Lao (Túnica Monástica)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Chapéu Cortante', 1, 'B', 'Aumenta o ataque especial');
+
+-- Shao Kahn (Armadura Imperial)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Martelo da Destruição', 1, 'B', 'Dobra o dano que é feito e recebido');
+
+-- Johnny Cage (Colete à Prova de Balas)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Óculos de Estrela', 1, 'B', 'Aumenta o dano crítico');
+
+-- Sonya Blade (Armadura Tática)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Faca de Operações', 1, 'B', 'Possibilidade de evitar um ataque');
+
+-- Jax Briggs (Armadura Militar)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Braços Biônicos', 1, 'B', 'Dobra o efeito dos consumíveis');
+
+-- Kano (Armadura Cibernética)
+INSERT INTO Item (nome, nivel, tipo, habilidade) 
+VALUES ('Lâmina Laser', 1, 'B', 'Receber dano aumenta o ataque');
+
 -- Inserir Armaduras para cada Lutador
 
 -- Scorpion (Armadura Infernal)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (13, 'Armadura Infernal', 50, 40, 200);
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
+VALUES (13, 50, 40, 200);
 
 -- Sub-Zero (Armadura de Gelo)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (14, 'Armadura de Gelo', 45, 55, 190);
+VALUES (14, 45, 55, 190);
 
 -- Raiden (Armadura do Trovão)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (15, 'Armadura do Trovão', 40, 60, 210);
+VALUES (15, 40, 60, 210);
 
 -- Liu Kang (Armadura de Dragão)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (16, 'Armadura de Dragão', 55, 45, 220);
+VALUES (16, 55, 45, 220);
 
 -- Kitana (Armadura Real)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (17, 'Armadura Real', 40, 50, 180);
+VALUES (17, 40, 50, 180);
 
 -- Mileena (Armadura de Lâminas)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (18, 'Armadura de Lâminas', 45, 45, 195);
+VALUES (18, 45, 45, 195);
 
 -- Kung Lao (Túnica Monástica)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (19, 'Túnica Monástica', 50, 50, 210);
+VALUES (19, 50, 50, 210);
 
 -- Shao Kahn (Armadura Imperial)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (20, 'Armadura Imperial', 70, 60, 250);
+VALUES (20, 70, 60, 250);
 
 -- Johnny Cage (Colete à Prova de Balas)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (21, 'Colete à Prova de Balas', 50, 40, 200);
+VALUES (21, 50, 40, 200);
 
 -- Sonya Blade (Armadura Tática)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (22, 'Armadura Tática', 45, 55, 190);
+VALUES (22, 45, 55, 190);
 
 -- Jax Briggs (Armadura Militar)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (23, 'Armadura Militar', 60, 50, 220);
+VALUES (23, 60, 50, 220);
 
 -- Kano (Armadura Cibernética)
 INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
-VALUES (24, 'Armadura Cibernética', 55, 50, 210);
+VALUES (24, 55, 50, 210);
 
 -- Criar instâncias das armaduras
 INSERT INTO InstanciaItem (idItem) VALUES (13); -- Armadura Infernal (Scorpion)
