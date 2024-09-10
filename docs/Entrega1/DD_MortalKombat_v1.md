@@ -33,12 +33,12 @@ O dicionário de dados fornecido uma visão detalhada dos atributos das entidade
 |                 |                                                                                                                                                                 |   
 |-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------| 
 | **Descrição**   | Tabela usada para caracterizar um Item, criada a partir do mapeamento de uma abstração e generalizaçao total e exclusiva de Item.                               |
-| **Observações** | Tipo possui os valores `arma` para [Arma](#tabela-arma),  `armadura` para [Armadura](#tabela-armadura), `amuleto` para [Amuleto](#tabela-amuleto) ou `consumível` para [Consumível](#tabela-consumível) | 
+| **Observações** | Tipo possui os valores `A` para [Arma](#tabela-arma),  `B` para [Armadura](#tabela-armadura), `C` para [Amuleto](#tabela-amuleto) ou `D` para [Consumível](#tabela-consumível) | 
 
 | Nome | Definição Lógica                                            | Tipo e Formato de Dado               | Tamanho | Restrições de Domínio |
 |:-----|:------------------------------------------------------------|:-------------------------------------|---------|:----------------------|
 | id   | Chave primária que define o número de identificação do item | SERIAL                               | -       | PRIMARY KEY           |
-| tipo | Atributo que define o tipo do item                          | ENUM('arma', 'armadura', 'amuleto', 'consumível') | -       | NOT NULL              |
+| tipo | Atributo que define o tipo do item                          | CHAR(1)('A', 'B', 'C', 'D') | -       | NOT NULL              |
 
 ---
 
