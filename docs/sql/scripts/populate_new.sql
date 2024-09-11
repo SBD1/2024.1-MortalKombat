@@ -206,47 +206,47 @@ INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida)
 VALUES (13, 50, 40, 200);
 
 -- Sub-Zero (Armadura de Gelo)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (14, 45, 55, 190);
 
 -- Raiden (Armadura do Trovão)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (15, 40, 60, 210);
 
 -- Liu Kang (Armadura de Dragão)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (16, 55, 45, 220);
 
 -- Kitana (Armadura Real)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (17, 40, 50, 180);
 
 -- Mileena (Armadura de Lâminas)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (18, 45, 45, 195);
 
 -- Kung Lao (Túnica Monástica)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (19, 50, 50, 210);
 
 -- Shao Kahn (Armadura Imperial)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (20, 70, 60, 250);
 
 -- Johnny Cage (Colete à Prova de Balas)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (21, 50, 40, 200);
 
 -- Sonya Blade (Armadura Tática)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (22, 45, 55, 190);
 
 -- Jax Briggs (Armadura Militar)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (23, 60, 50, 220);
 
 -- Kano (Armadura Cibernética)
-INSERT INTO Armadura (idItem, nome, defesaFisica, defesaEspecial, vida) 
+INSERT INTO Armadura (idItem, defesaFisica, defesaEspecial, vida) 
 VALUES (24, 55, 50, 210);
 
 -- Criar instâncias das armaduras
@@ -323,20 +323,26 @@ INSERT INTO InstanciaItem (idItem) VALUES (14); -- Armadura de Gelo
 INSERT INTO LutadorChefe (idLutador, idInstanciaitem) 
 VALUES ((SELECT idLutador FROM Lutador WHERE Nome = 'Sub-Zero'), (SELECT MAX(idInstanciaitem) FROM InstanciaItem));
 
--- Inserir Salas de Combate
-INSERT INTO SalaCombate (idSala) VALUES (1);
-INSERT INTO SalaCombate (idSala) VALUES (3);
-
--- Inserir Salas de Evento
-INSERT INTO SalaEvento (idSala, descricao) VALUES (2, 'Evento especial: diminuição de ataque de todos os lutadores em 20%');
+--Inserir Sala de evento
+INSERT INTO Sala (tipo, andar, numero, nome) 
+VALUES ('E', 5, 501, 'Sala de debilidade');
+-- Inserir em SalaEvento
+INSERT INTO SalaEvento (idSala, descricao) VALUES (14, 'Evento especial: diminuição de ataque de todos os lutadores em 20%');
 
 -- Inserir Ligações entre Salas
 INSERT INTO se_liga (idSalaO, idSalaD) VALUES (1, 2);
 INSERT INTO se_liga (idSalaO, idSalaD) VALUES (2, 3);
 
-
 -- Inserir Lutador Chefe (Chefe de andar 3)
 INSERT INTO LutadorChefe (idLutador, idInstanciaitem) VALUES (4, 1); -- Liu Kang como chefe
+
+-- Inserir em tabela Instancia_Lutador os Lutadores presentes no jogo
+INSERT INTO Instancia_lutador (idLutador) VALUES (1); -- Scorpion
+INSERT INTO Instancia_lutador (idLutador) VALUES (2); -- Sub-Zero
+INSERT INTO Instancia_lutador (idLutador) VALUES (3); -- Raiden
+INSERT INTO Instancia_lutador (idLutador) VALUES (4); -- Liu Kang
+INSERT INTO Instancia_lutador (idLutador) VALUES (7); -- Sonya Blade
+INSERT INTO Instancia_lutador (idLutador) VALUES (9); -- Johnny Cage
 
 -- Associar Lutadores a Salas de Combate
 INSERT INTO Tem_lutador (idSala, idInstancialutador) VALUES (1, 1); -- Scorpion na sala de combate inicial

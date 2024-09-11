@@ -10,7 +10,7 @@ CREATE TABLE Sala (
 
 -- Criação da tabela SalaCombate com FK para Sala
 CREATE TABLE SalaCombate (
-    idSala INT NOT NULL,
+    idSala INT PRIMARY KEY,
 	CONSTRAINT salaC_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT	 
 );
 
@@ -24,9 +24,9 @@ CREATE TABLE se_liga (
 
 -- Criação da tabela SalaEvento com FK para Sala
 CREATE TABLE SalaEvento (
-    idSala INT NOT NULL,
+    idSala INT PRIMARY KEY,
     descricao TEXT NOT NULL,
-	CONSTRAINT sacaE_FK FOREIGN KEY (idSalaD) REFERENCES Sala(idSala) ON DELETE RESTRICT
+	CONSTRAINT sacaE_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT
 );
 
 -- Criação da tabela Tem_lutador com FK para Lutador e Sala
@@ -87,9 +87,9 @@ CREATE TABLE Jogador (
 	armadura INT NOT NULL,
 	artefacto INT NOT NULL,
 	classe CHAR(1) NOT NULL, -- Verificar para que es classe
-    CONSTRAINT jogador_val_chk CHECK (Nivel >= 1 AND Defesa >= 0 AND Vida >= 0 AND Chance_critica >= 0 AND Ataque_especial >= 0 AND Ataque_fisico >= 0),	-- Constraints para validar atributos
-    CONSTRAINT jogador_classe_chk CHECK (Classe == 'A' OR Classe == 'B' OR Classe == 'C'), -- Verificar valores depois
-	CONSTRAINT jogador_equipo_chk CHECK ((arma == 1 OR arma == 0) AND (armadura == 1 OR armadura == 0) AND (artefacto == 1 OR artefacto == 0))
+    CONSTRAINT jogador_val_chk CHECK (nivel >= 1 AND defesa >= 0 AND vida >= 0 AND chanceCritica >= 0 AND ataqueEspecial >= 0 AND ataqueFisico >= 0),	-- Constraints para validar atributos
+    CONSTRAINT jogador_classe_chk CHECK (classe = 'A' OR classe = 'B' OR classe = 'C'), -- Verificar valores depois
+	CONSTRAINT jogador_equipo_chk CHECK ((arma = 1 OR arma = 0) AND (armadura = 1 OR armadura = 0) AND (artefacto = 1 OR artefacto = 0))
 );
 
 -- Criação da tabela Jogador_equipa, referenciando Jogador e InstanciaItem
@@ -125,18 +125,18 @@ CREATE TABLE Armadura (
     defesaEspecial INT NOT NULL,
     vida INT NOT NULL,
 	CONSTRAINT armadura_id FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE RESTRICT,
-    CONSTRAINT armadura_val_chk CHECK (DefesaFisica >= 0 AND DefesaEspecial >= 0 AND Vida >= 0)
+    CONSTRAINT armadura_val_chk CHECK (defesaFisica >= 0 AND defesaEspecial >= 0 AND vida >= 0)
 );
 
 CREATE TABLE Amuleto (
-    idAmuleto INT PRIMARY KEY,
+    idItem INT PRIMARY KEY,
     ataqueFisico INT NOT NULL,
     ataqueEspecial INT NOT NULL,
 	defesaFisica INT NOT NULL,
 	defesaEspecial INT NOT NULL,
     vida INT NOT NULL,
 	CONSTRAINT amuleto_id FOREIGN KEY (idItem) REFERENCES Item(idItem) ON DELETE RESTRICT,
-    CONSTRAINT amuleto_val_chk CHECK (DefesaFisica >= 0 AND DefesaEspecial >= 0 AND AtaqueFisico >= 0 AND AtaqueEspecial >= 0 AND Vida >= 0)
+    CONSTRAINT amuleto_val_chk CHECK (defesaFisica >= 0 AND defesaEspecial >= 0 AND ataqueFisico >= 0 AND ataqueEspecial >= 0 AND vida >= 0)
 );
 
 CREATE TABLE Consumivel (
@@ -196,7 +196,7 @@ CREATE TABLE Possui_passiva (
 	CONSTRAINT possui_passiva_passiva FOREIGN KEY (idPassiva) REFERENCES Passiva(idPassiva) ON DELETE RESTRICT,
 	CONSTRAINT possui_passiva_skill FOREIGN KEY (idSkills) REFERENCES Skills(idSkills) ON DELETE RESTRICT
 );
-joga
+
 -- Criação da tabela Possui_lutador com FKs Passiva e Lutador
 CREATE TABLE Possui_lutador (
     idLutador INT NOT NULL,
