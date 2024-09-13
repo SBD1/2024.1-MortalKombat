@@ -1,78 +1,3 @@
--- Criação da tabela Sala
-CREATE TABLE Sala (
-    idSala SERIAL PRIMARY KEY,
-	tipo CHAR(1) NOT NULL,
-    andar INT NOT NULL,
-    numero INT NOT NULL,
-    nome VARCHAR(100) NOT NULL,
-	CONSTRAINT sala_tipo_chk CHECK (Tipo = 'C' OR Tipo = 'E')
-);
-
--- Criação da tabela SalaCombate com FK para Sala
-CREATE TABLE SalaCombate (
-    idSala INT PRIMARY KEY,
-	CONSTRAINT salaC_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT	 
-);
-
--- Criação da tabela se_liga com FK pra Sala
-CREATE TABLE se_liga (
-    idSalaO INT NOT NULL,
-	idSalaD INT NOT NULL,
-	CONSTRAINT se_liga_FK_O FOREIGN KEY (idSalaO) REFERENCES Sala(idSala) ON DELETE RESTRICT,
-	CONSTRAINT se_liga_FK_D FOREIGN KEY (idSalaD) REFERENCES Sala(idSala) ON DELETE RESTRICT
-);
-
--- Criação da tabela SalaEvento com FK para Sala
-CREATE TABLE SalaEvento (
-    idSala INT PRIMARY KEY,
-    descricao TEXT NOT NULL,
-	CONSTRAINT sacaE_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT
-);
-
--- Criação da tabela Tem_lutador com FK para Lutador e Sala
-CREATE TABLE Tem_lutador (
-    idSala INT NOT NULL,
-    idInstancialutador INT NOT NULL,
-    CONSTRAINT tem_lutador_id FOREIGN KEY (idInstancialutador) REFERENCES Instancia_lutador(idInstancialutador) ON DELETE RESTRICT,
-	CONSTRAINT tem_lutador_sala FOREIGN KEY (idSala) REFERENCES SalaCombate(idSala) ON DELETE RESTRICT
-);
-
--- Criação da tabela Tem_Jogador com FK para Jogador e Sala
-CREATE TABLE Tem_Jogador (
-    idSala INT NOT NULL,
-    idJogador INT NOT NULL,
-    CONSTRAINT tem_jogador_id FOREIGN KEY (idJogador) REFERENCES Jogador(idJogador) ON DELETE RESTRICT,
-	CONSTRAINT tem_jogador_sala FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT
-);
-
--- Criação da tabela Lutador
-CREATE TABLE Lutador (
-    idLutador SERIAL PRIMARY KEY,
-    Nivel INT NOT NULL,
-    Defesa INT NOT NULL,
-    Vida INT NOT NULL,
-    Nome VARCHAR(100) NOT NULL,
-	Chance_critica FLOAT NOT NULL,
-	Ataque_especial INT NOT NULL,
-	Ataque_fisico INT NOT NULL,
-    CONSTRAINT lutador_val_chk CHECK (Nivel >= 1 AND Defesa >= 0 AND Vida >= 0 AND Chance_critica >= 0 AND Ataque_especial >= 0 AND Ataque_fisico >= 0) -- Constraints para validar atributos
-);
-
--- Criação da tabela LutadorChefe, referenciando Lutador e InstanciaItem
-CREATE TABLE LutadorChefe (
-    idLutador INT NOT NULL,
-	idInstanciaitem INT NOT NULL,
-    CONSTRAINT lutador_chefe_id FOREIGN KEY (idLutador) REFERENCES Lutador(idLutador) ON DELETE RESTRICT,
-	CONSTRAINT lutador_chefe_item FOREIGN KEY (idInstanciaitem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
-);
-
--- Criação da tabela Instancia_lutador, referenciando Lutador
-CREATE TABLE Instancia_lutador (
-    idInstancialutador SERIAL PRIMARY KEY,
-    idLutador INT NOT NULL,
-    CONSTRAINT instancia_lutador_lutador FOREIGN KEY (idLutador) REFERENCES Lutador(idLutador) ON DELETE RESTRICT
-);
-
 -- Criação da tabela Jogador
 CREATE TABLE Jogador (
     idJogador SERIAL PRIMARY KEY,
@@ -92,11 +17,47 @@ CREATE TABLE Jogador (
 	CONSTRAINT jogador_equipo_chk CHECK ((arma = 1 OR arma = 0) AND (armadura = 1 OR armadura = 0) AND (artefacto = 1 OR artefacto = 0))
 );
 
--- Criação da tabela Jogador_equipa, referenciando Jogador e InstanciaItem
-CREATE TABLE Jogador_equipa (
-    idJogador INT NOT NULL,
-	idInstanciaitem INT NOT NULL,
-	CONSTRAINT jogador_equipa_item FOREIGN KEY (idInstanciaitem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
+-- Criação da tabela Sala
+CREATE TABLE Sala (
+    idSala SERIAL PRIMARY KEY,
+	tipo CHAR(1) NOT NULL,
+    andar INT NOT NULL,
+    numero INT NOT NULL,
+    nome VARCHAR(100) NOT NULL,
+	CONSTRAINT sala_tipo_chk CHECK (Tipo = 'C' OR Tipo = 'E')
+);
+
+-- Criação da tabela SalaCombate com FK para Sala
+CREATE TABLE SalaCombate (
+    idSala INT PRIMARY KEY,
+	CONSTRAINT salaC_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT	 
+);
+
+-- Criação da tabela SalaEvento com FK para Sala
+CREATE TABLE SalaEvento (
+    idSala INT PRIMARY KEY,
+    descricao TEXT NOT NULL,
+	CONSTRAINT sacaE_FK FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT
+);
+
+-- Criação da tabela Lutador
+CREATE TABLE Lutador (
+    idLutador SERIAL PRIMARY KEY,
+    Nivel INT NOT NULL,
+    Defesa INT NOT NULL,
+    Vida INT NOT NULL,
+    Nome VARCHAR(100) NOT NULL,
+	Chance_critica FLOAT NOT NULL,
+	Ataque_especial INT NOT NULL,
+	Ataque_fisico INT NOT NULL,
+    CONSTRAINT lutador_val_chk CHECK (Nivel >= 1 AND Defesa >= 0 AND Vida >= 0 AND Chance_critica >= 0 AND Ataque_especial >= 0 AND Ataque_fisico >= 0) -- Constraints para validar atributos
+);
+
+-- Criação da tabela Instancia_lutador, referenciando Lutador
+CREATE TABLE Instancia_lutador (
+    idInstancialutador SERIAL PRIMARY KEY,
+    idLutador INT NOT NULL,
+    CONSTRAINT instancia_lutador_lutador FOREIGN KEY (idLutador) REFERENCES Lutador(idLutador) ON DELETE RESTRICT
 );
 
 -- Criação da tabelas Item
@@ -160,18 +121,64 @@ CREATE TABLE Inventario (
 	CONSTRAINT inventario_id_jogador FOREIGN KEY (idJogador) REFERENCES Jogador(idJogador) ON DELETE RESTRICT
 );
 
--- Criação da tabela Possue_inventario com FK instancia item
-CREATE TABLE Possue_inventario (
-    idInventario INT NOT NULL,
-	idInstanciaItem INT NOT NULL,
-	CONSTRAINT possue_inv_item FOREIGN KEY (idInstanciaItem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
-);
-
 -- Criação da tabela Skills
 CREATE TABLE Skills (
     idSkills INT PRIMARY KEY,
 	nome VARCHAR(100) NOT NULL,
     descricao TEXT NOT NULL
+);
+
+-- Criação da tabela Passiva
+CREATE TABLE Passiva (
+    idPassiva INT PRIMARY KEY,
+	Nome VARCHAR(100) NOT NULL,
+    Descricao TEXT NOT NULL
+);
+
+-- Criação da tabela se_liga com FK pra Sala
+CREATE TABLE se_liga (
+    idSalaO INT NOT NULL,
+	idSalaD INT NOT NULL,
+	CONSTRAINT se_liga_FK_O FOREIGN KEY (idSalaO) REFERENCES Sala(idSala) ON DELETE RESTRICT,
+	CONSTRAINT se_liga_FK_D FOREIGN KEY (idSalaD) REFERENCES Sala(idSala) ON DELETE RESTRICT
+);
+
+-- Criação da tabela Tem_lutador com FK para Lutador e Sala
+CREATE TABLE Tem_lutador (
+    idSala INT NOT NULL,
+    idInstancialutador INT NOT NULL,
+    CONSTRAINT tem_lutador_id FOREIGN KEY (idInstancialutador) REFERENCES Instancia_lutador(idInstancialutador) ON DELETE RESTRICT,
+	CONSTRAINT tem_lutador_sala FOREIGN KEY (idSala) REFERENCES SalaCombate(idSala) ON DELETE RESTRICT
+);
+
+-- Criação da tabela Tem_Jogador com FK para Jogador e Sala
+CREATE TABLE Tem_Jogador (
+    idSala INT NOT NULL,
+    idJogador INT NOT NULL,
+    CONSTRAINT tem_jogador_id FOREIGN KEY (idJogador) REFERENCES Jogador(idJogador) ON DELETE RESTRICT,
+	CONSTRAINT tem_jogador_sala FOREIGN KEY (idSala) REFERENCES Sala(idSala) ON DELETE RESTRICT
+);
+
+-- Criação da tabela LutadorChefe, referenciando Lutador e InstanciaItem
+CREATE TABLE LutadorChefe (
+    idLutador INT NOT NULL,
+	idInstanciaitem INT NOT NULL,
+    CONSTRAINT lutador_chefe_id FOREIGN KEY (idLutador) REFERENCES Lutador(idLutador) ON DELETE RESTRICT,
+	CONSTRAINT lutador_chefe_item FOREIGN KEY (idInstanciaitem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
+);
+
+-- Criação da tabela Jogador_equipa, referenciando Jogador e InstanciaItem
+CREATE TABLE Jogador_equipa (
+    idJogador INT NOT NULL,
+	idInstanciaitem INT NOT NULL,
+	CONSTRAINT jogador_equipa_item FOREIGN KEY (idInstanciaitem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
+);
+
+-- Criação da tabela Possue_inventario com FK instancia item
+CREATE TABLE Possue_inventario (
+    idInventario INT NOT NULL,
+	idInstanciaItem INT NOT NULL,
+	CONSTRAINT possue_inv_item FOREIGN KEY (idInstanciaItem) REFERENCES InstanciaItem(idInstanciaItem) ON DELETE RESTRICT
 );
 
 -- Criação da tabela Jogador_possue com FKs Skill e Jogador
@@ -180,13 +187,6 @@ CREATE TABLE Jogador_possue (
 	idSkills INT NOT NULL,
 	CONSTRAINT jogador_possue_skills FOREIGN KEY (idSkills) REFERENCES Skills(idSkills) ON DELETE RESTRICT,
 	CONSTRAINT jogador_possue_jogador FOREIGN KEY (idJogador) REFERENCES Jogador(idJogador) ON DELETE RESTRICT
-);
-
--- Criação da tabela Passiva
-CREATE TABLE Passiva (
-    idPassiva INT PRIMARY KEY,
-	Nome VARCHAR(100) NOT NULL,
-    Descricao TEXT NOT NULL
 );
 
 -- Criação da tabela Possui_passiva com FKs Passiva e Skill

@@ -352,17 +352,13 @@ INSERT INTO Tem_lutador (idSala, idInstancialutador) VALUES (3, 4); -- Liu Kang 
 
 -- Inserir Jogadores
 INSERT INTO Jogador (nivel, defesa, vida, nome, chanceCritica, ataqueEspecial, ataqueFisico, arma, armadura, artefacto, classe) 
-VALUES (1, 50, 600, 'Jogador1', 0.20, 90, 110, 1, 1, 0, 'A');
+VALUES (1, 50, 600, 'Jogador1', 0.20, 90, 110, 0, 0, 0, 'A');
 
 -- Criar Inventários para os jogadores
 INSERT INTO Inventario (idJogador) VALUES (1);
 
 -- Associar Jogadores a Salas
 INSERT INTO Tem_Jogador (idSala, idJogador) VALUES (1, 1); -- Jogador1 na sala de combate inicial
-
-
--- Jogadores equipam itens
-INSERT INTO Jogador_equipa (idJogador, idInstanciaitem) VALUES (1, 1); -- Jogador1 equipa Espada Flamejante
 
 -- Inserir Skills
 INSERT INTO Skills (idSkills, nome, descricao) VALUES (1, 'Chute Rápido', 'Um chute extremamente veloz');
