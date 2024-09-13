@@ -97,3 +97,4 @@ python main.py
 ## Entrega 3
 
 - [Triggers/stored procedures](docs/sql/Triggers/create_triggers.sql)
+- [Apresentação do módulo 3](https://unbbr-my.sharepoint.com/:v:/g/personal/211006957_aluno_unb_br/Ea3VKg0PYedCpRzrsMooYjwBb-2q-ehqxI0TUAYsfzeXUg?e=HEycB9&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D)
