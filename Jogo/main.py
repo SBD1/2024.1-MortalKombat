@@ -116,12 +116,44 @@ def listar_salas_disponiveis(conn, idSala):
             print(f"ID: {sala[0]} - Nome: {sala[1]}")
         return salas
 
-# Move o jogador para outra sala
 def mover_jogador(conn, jogador_id, nova_sala_id):
     with conn.cursor() as cur:
+        cur.execute("SELECT idSala FROM Tem_jogador WHERE idJogador = %s;", (jogador_id,))
+        sala_atual = cur.fetchone()
+
+        if sala_atual is None:
+            print("Jogador não encontrado.")
+            return
+
+        sala_atual_id = sala_atual[0]
+
+        if sala_atual_id == nova_sala_id:
+            print(f"O jogador já está na sala {nova_sala_id}.")
+            return
+
+        cur.execute("""
+            SELECT COUNT(*) 
+            FROM se_liga 
+            WHERE idSalaO = %s AND idSalaD = %s;
+        """, (sala_atual_id, nova_sala_id))
+        
+        movimento_permitido = cur.fetchone()[0]
+
+        if movimento_permitido == 0:
+            print(f"Movimento não permitido de sala {sala_atual_id} para sala {nova_sala_id}.")
+            return
+
+        cur.execute("SELECT COUNT(*) FROM Sala WHERE idSala = %s;", (nova_sala_id,))
+        sala_existe = cur.fetchone()[0]
+
+        if sala_existe == 0:
+            print(f"A sala {nova_sala_id} não existe.")
+            return
+
         cur.execute("UPDATE Tem_jogador SET idSala = %s WHERE idJogador = %s;", (nova_sala_id, jogador_id))
         conn.commit()
-        print(f"Jogador movido para a sala {nova_sala_id}")
+
+        print(f"Jogador movido para a sala {nova_sala_id}.")
 
 # Listar lutador na sala
 def listar_lutador_sala(conn, idSala):
@@ -291,6 +323,25 @@ def equipar_item(conn, idJogador, idInstanciaItem):
                 print("Arma equipada com sucesso!")
             else:
                 cur.execute("""
+                    SELECT idInstanciaItem 
+                    FROM Jogador_equipa 
+                    WHERE idJogador = %s AND idInstanciaItem IN (
+                        SELECT ii.idInstanciaItem 
+                        FROM InstanciaItem ii
+                        JOIN Item i ON ii.idItem = i.idItem
+                        WHERE i.tipo = 'A'
+                    );
+                """, (idJogador,))
+                arma_antiga = cur.fetchone()[0]
+
+                cur.execute("""
+                    INSERT INTO Possue_inventario (idInventario, idInstanciaItem)
+                    SELECT idInventario, %s
+                    FROM Inventario
+                    WHERE idJogador = %s;
+                """, (arma_antiga, idJogador))
+
+                cur.execute("""
                     UPDATE Jogador_equipa 
                     SET idInstanciaItem = %s 
                     WHERE idJogador = %s AND idInstanciaItem IN (
@@ -311,6 +362,25 @@ def equipar_item(conn, idJogador, idInstanciaItem):
                 cur.execute("UPDATE Jogador SET armadura = 1 WHERE idJogador = %s;", (idJogador,))
                 print("Armadura equipada com sucesso!")
             else:
+                cur.execute("""
+                    SELECT idInstanciaItem 
+                    FROM Jogador_equipa 
+                    WHERE idJogador = %s AND idInstanciaItem IN (
+                        SELECT ii.idInstanciaItem 
+                        FROM InstanciaItem ii
+                        JOIN Item i ON ii.idItem = i.idItem
+                        WHERE i.tipo = 'B'
+                    );
+                """, (idJogador,))
+                armadura_antiga = cur.fetchone()[0]
+
+                cur.execute("""
+                    INSERT INTO Possue_inventario (idInventario, idInstanciaItem)
+                    SELECT idInventario, %s
+                    FROM Inventario
+                    WHERE idJogador = %s;
+                """, (armadura_antiga, idJogador))
+
                 cur.execute("""
                     UPDATE Jogador_equipa 
                     SET idInstanciaItem = %s 
@@ -333,6 +403,25 @@ def equipar_item(conn, idJogador, idInstanciaItem):
                 print("Amuleto equipado com sucesso!")
             else:
                 cur.execute("""
+                    SELECT idInstanciaItem 
+                    FROM Jogador_equipa 
+                    WHERE idJogador = %s AND idInstanciaItem IN (
+                        SELECT ii.idInstanciaItem 
+                        FROM InstanciaItem ii
+                        JOIN Item i ON ii.idItem = i.idItem
+                        WHERE i.tipo = 'C'
+                    );
+                """, (idJogador,))
+                amuleto_antigo = cur.fetchone()[0]
+
+                cur.execute("""
+                    INSERT INTO Possue_inventario (idInventario, idInstanciaItem)
+                    SELECT idInventario, %s
+                    FROM Inventario
+                    WHERE idJogador = %s;
+                """, (amuleto_antigo, idJogador))
+
+                cur.execute("""
                     UPDATE Jogador_equipa 
                     SET idInstanciaItem = %s 
                     WHERE idJogador = %s AND idInstanciaItem IN (
@@ -345,11 +434,15 @@ def equipar_item(conn, idJogador, idInstanciaItem):
                 print("Amuleto trocado com sucesso!")            
         
         cur.execute("""
-            DELETE FROM Possue_inventario 
-            WHERE idJogador = %s AND idInstanciaItem = %s;
+            DELETE FROM Possue_inventario
+            WHERE idInventario IN (
+            SELECT Inventario.idInventario
+            FROM Inventario
+            WHERE Inventario.idJogador = %s
+            ) AND idInstanciaItem = %s;
         """, (idJogador, idInstanciaItem))
 
-        conn.commit()   
+        conn.commit()
 
 def desequipar_item(conn, idJogador, idInstanciaItem):
     with conn.cursor() as cur:
