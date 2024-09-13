@@ -61,13 +61,21 @@ def conectar_bd():
 
 #### Paso 5:
 
-Executar o powershell como administrador e usar o para encontrar o arquivo main.py
+Executar o powershell como administrador e instalar psycopg2
+
+```bash
+pip install psycopg2
+```
+
+#### Paso 6:
+
+Usar o cd para encontrar o arquivo main.py
 
 ```bash
 cd rota_do_repo/2024.1-MortalKombat\Jogo
 ```
 
-#### Paseo 6:
+#### Paseo 7:
 
 Executar main.py com python
 
